@@ -52,7 +52,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload WASM file to release
-        uses: Roang-zero1/github-upload-release-artifacts-action@v2
+        uses: Roang-zero1/github-upload-release-artifacts-action@v3
         with:
           args: "surfer-shockwaves/surfer_shockwaves.wasm"
           created_tag: "${{ steps.get-version.outputs.tag }}"
