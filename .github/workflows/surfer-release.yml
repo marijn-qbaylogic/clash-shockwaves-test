@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: WASM Surfer extension
-          path: $GITHUB_WORKSPACE/surfer-shockwaves/surfer_shockwaves.wasm
+          path: surfer-shockwaves/surfer_shockwaves.wasm
           if-no-files-found: error
 
       - name: Upload WASM file to release
