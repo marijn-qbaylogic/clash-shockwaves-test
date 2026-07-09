@@ -19,6 +19,7 @@ jobs:
         id: get-version
         run: |
           cd $GITHUB_WORKSPACE/
+          echo "workspace: $GITHUB_WORKSPACE"
           VERSION=$(<VERSION)
           TAG="v$VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -53,7 +54,7 @@ jobs:
       - name: Upload WASM file to release
         uses: Roang-zero1/github-upload-release-artifacts-action@v2
         with:
-          args: "${{ github.workspace }}/surfer-shockwaves/surfer_shockwaves.wasm"
+          args: "surfer-shockwaves/surfer_shockwaves.wasm"
           created_tag: "${{ steps.get-version.outputs.tag }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
