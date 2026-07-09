@@ -18,13 +18,13 @@ jobs:
         id: get-version
         run: |
           cd $GITHUB_WORKSPACE/
-          VERSION = cat VERSION
-          TAG = "v$VERSION"
+          VERSION=$(<VERSION)
+          TAG="v$VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "Found version $VERSION"
       - name: Check version matches pushed tag
-        if: github.event_name == "push"
+        if: github.event_name == 'push'
         run: |
           if [[ "${{ github.ref_name }}" != "${{ steps.get-version.outputs.tag }}" ]]; then
             echo "Tag $TAG does not match version in VERSION file"
