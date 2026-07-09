@@ -63,27 +63,27 @@ jobs:
         if: '!cancelled()'
         with:
           name: Haddock docs
-          path: clash-shockwaves/hackage-dist/clash-shockwaves*.tar.gz
+          path: $GITHUB_WORKSPACE/clash-shockwaves/hackage-dist/clash-shockwaves*.tar.gz
           if-no-files-found: error
       - name: Upload Hackage tarball as artifact
         uses: actions/upload-artifact@v4
         if: '!cancelled()'
         with:
           name: Tarball for Hackage
-          path: clash-shockwaves/dist-newstyle/sdist/clash-shockwaves*.tar.gz
+          path: $GITHUB_WORKSPACE/clash-shockwaves/dist-newstyle/sdist/clash-shockwaves*.tar.gz
           if-no-files-found: error
         
       - name: Upload Haddock docs to release
         uses: Roang-zero1/github-upload-release-artifacts-action@v2
         with:
-          args: "clash-shockwaves/hackage-dist/clash-shockwaves*.tar.gz"
+          args: "$GITHUB_WORKSPACE/clash-shockwaves/hackage-dist/clash-shockwaves*.tar.gz"
           created_tag: "${{ steps.get-version.outputs.tag }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Hackage tarball to release
         uses: Roang-zero1/github-upload-release-artifacts-action@v2
         with:
-          args: "clash-shockwaves/dist-newstyle/sdist/clash-shockwaves*.tar.gz"
+          args: "$GITHUB_WORKSPACE/clash-shockwaves/dist-newstyle/sdist/clash-shockwaves*.tar.gz"
           created_tag: "${{ steps.get-version.outputs.tag }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
